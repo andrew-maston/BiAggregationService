@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 
@@ -49,7 +51,11 @@ namespace AggregationService
             services.AddSingleton<ISummaryService>(svc => new SummaryService(svc.GetRequiredService<IIfcStoreRepository<IIfcElement>>()));
             services.AddSingleton<IRoomService>(svc => new RoomService(svc.GetRequiredService<IIfcStoreRepository<IIfcSpace>>()));
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                var filePath = Path.Combine(AppContext.BaseDirectory, "BiAggregationService.xml");
+                c.IncludeXmlComments(filePath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace AggregationService.Controllers
 {
+    /// <summary>
+    /// High level information about the model
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class SummaryController : ControllerBase
@@ -14,13 +18,24 @@ namespace AggregationService.Controllers
         private readonly ISummaryService _summaryService;
 
         //could have added a file upload here to take the file and initialise an instance of IfcStore
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="summaryService"></param>
+        /// <param name="logger"></param>
         public SummaryController(ISummaryService summaryService, ILogger<SummaryController> logger)
         {
             _summaryService = summaryService;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retrieves a collection of elements and the number of their occurrences
+        /// </summary>
         [HttpGet]
+        [ProducesResponseType(typeof(Dictionary<string, int>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Route("/getelementcounts")]
         public ActionResult GetElementCounts()
         {
             Dictionary<string, int> result;

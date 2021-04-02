@@ -8,14 +8,14 @@ This project was created with the sole purpose of it being reviewed by xbim
 
 ## Installation
 
-Clone the project, have nuget, run it.
+Clone this repository, build and run the solution in Visual Studio, Swagger UI will be displayed at the application root.
 
 ## API Reference
 
-The Swagger UI/documentation for the API can be found at the root of the running application, we simply provide two endpoints
+The Swagger UI/documentation for the API can be found at the root of the running application, we provide two endpoints
 
-GET /Rooms
-GET /Summary
+- GET /Rooms
+- GET /Summary
 
 ## Challenges / Future Enhancements
 

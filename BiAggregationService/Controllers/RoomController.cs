@@ -4,24 +4,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace AggregationService.Controllers
 {
+    /// <summary>
+    /// Used to retrieve room information
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class RoomsController : ControllerBase
+    public class RoomController : ControllerBase
     {
-        private readonly ILogger<RoomsController> _logger;
+        private readonly ILogger<RoomController> _logger;
         private readonly IRoomService _roomService;
 
         //could have added a file upload here to take the file and initialise an instance of IfcStore
-        public RoomsController(IRoomService roomService, ILogger<RoomsController> logger)
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="roomService"></param>
+        /// <param name="logger"></param>
+        public RoomController(IRoomService roomService, ILogger<RoomController> logger)
         {
             _roomService = roomService;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retrieves a collection of rooms and their areas
+        /// </summary>
         [HttpGet]
+        [ProducesResponseType(typeof(IReadOnlyCollection<Room>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Route("/getall")]
         public ActionResult GetAll()
         {
             IReadOnlyCollection<Room> results;

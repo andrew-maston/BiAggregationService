@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BiAggregationService</name>
+    </assembly>
+    <members>
+        <member name="T:AggregationService.Controllers.RoomController">
+            <summary>
+            Used to retrieve room information
+            </summary>
+        </member>
+        <member name="M:AggregationService.Controllers.RoomController.#ctor(AggregationService.IRoomService,Microsoft.Extensions.Logging.ILogger{AggregationService.Controllers.RoomController})">
+            <summary>
+            ctor
+            </summary>
+            <param name="roomService"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:AggregationService.Controllers.RoomController.GetAll">
+            <summary>
+            Retrieves a collection of rooms and their areas
+            </summary>
+        </member>
+        <member name="T:AggregationService.Controllers.SummaryController">
+            <summary>
+            High level information about the model
+            </summary>
+        </member>
+        <member name="M:AggregationService.Controllers.SummaryController.#ctor(AggregationService.ISummaryService,Microsoft.Extensions.Logging.ILogger{AggregationService.Controllers.SummaryController})">
+            <summary>
+            ctor
+            </summary>
+            <param name="summaryService"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:AggregationService.Controllers.SummaryController.GetElementCounts">
+            <summary>
+            Retrieves a collection of elements and the number of their occurrences
+            </summary>
+        </member>
+        <member name="T:AggregationService.Models.Room">
+            <summary>
+            A room of a building
+            </summary>
+        </member>
+        <member name="P:AggregationService.Models.Room.Name">
+            <summary>
+            The name
+            </summary>
+        </member>
+        <member name="P:AggregationService.Models.Room.Area">
+            <summary>
+            The area
+            </summary>
+        </member>
+    </members>
+</doc>
