@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AggregationService.Controllers
 {
@@ -32,8 +30,9 @@ namespace AggregationService.Controllers
                 //was trying to do something asynchronous here but couldn't see a way of doing that in IfcStore
                 result = _summaryService.GetElementCounts();
             } 
-            catch
+            catch(Exception ex)
             {
+                _logger.Log(LogLevel.Error, null, ex);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 

@@ -5,6 +5,6 @@ namespace AggregationService
 {
     public interface IRoomService
     {
-        IReadOnlyCollection<Room> GetRoomInformation();
+        IReadOnlyCollection<Room> GetRooms();
     }
 }

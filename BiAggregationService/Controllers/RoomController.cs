@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AggregationService.Controllers
 {
@@ -24,14 +22,14 @@ namespace AggregationService.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetRoomInformation()
+        public ActionResult GetAll()
         {
             IReadOnlyCollection<Room> results;
 
             try
             {
                 //was trying to do something asynchronous here but couldn't see a way of doing that in IfcStore
-                results = _roomService.GetRoomInformation();
+                results = _roomService.GetRooms();
             } 
             catch(Exception ex)
             {

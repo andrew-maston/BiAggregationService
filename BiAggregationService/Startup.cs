@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 
@@ -41,8 +42,9 @@ namespace AggregationService
         {
             services.AddControllers();
             services.AddSingleton(IfcStore.Open(_localFilePath, _xbimEditorCredentials));
-            services.AddSingleton<IIfcStoreRepository<IIfcElement>>(svc => new IfcStoreRepository<IIfcElement>(svc.GetRequiredService<IfcStore>()));
-            services.AddSingleton<IIfcStoreRepository<IIfcSpace>>(svc => new IfcStoreRepository<IIfcSpace>(svc.GetRequiredService<IfcStore>()));
+
+            services.AddSingleton<IIfcStoreRepository<IIfcElement>>(svc => new IfcStoreRepository<IIfcElement>(svc.GetRequiredService<IfcStore>(), svc.GetRequiredService<ILogger>()));
+            services.AddSingleton<IIfcStoreRepository<IIfcSpace>>(svc => new IfcStoreRepository<IIfcSpace>(svc.GetRequiredService<IfcStore>(), svc.GetRequiredService<ILogger>()));
 
             services.AddSingleton<ISummaryService>(svc => new SummaryService(svc.GetRequiredService<IIfcStoreRepository<IIfcElement>>()));
             services.AddSingleton<IRoomService>(svc => new RoomService(svc.GetRequiredService<IIfcStoreRepository<IIfcSpace>>()));
@@ -69,9 +71,7 @@ namespace AggregationService
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

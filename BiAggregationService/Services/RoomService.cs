@@ -15,7 +15,7 @@ namespace AggregationService
             _spaceRepository = spaceRepository;
         }
 
-        public IReadOnlyCollection<Room> GetRoomInformation()
+        public IReadOnlyCollection<Room> GetRooms()
         {
             var spaces = _spaceRepository.GetAll();
             var rooms = new List<Room>();
