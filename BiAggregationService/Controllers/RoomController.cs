@@ -12,7 +12,6 @@ namespace AggregationService.Controllers
     /// Used to retrieve room information
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
     public class RoomController : ControllerBase
     {
         private readonly ILogger<RoomController> _logger;
@@ -36,7 +35,7 @@ namespace AggregationService.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IReadOnlyCollection<Room>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Route("/getall")]
+        [Route("[controller]/getall")]
         public ActionResult GetAll()
         {
             IReadOnlyCollection<Room> results;

@@ -11,7 +11,6 @@ namespace AggregationService.Controllers
     /// High level information about the model
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
     public class SummaryController : ControllerBase
     {
         private readonly ILogger<SummaryController> _logger;
@@ -35,7 +34,7 @@ namespace AggregationService.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(Dictionary<string, int>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Route("/getelementcounts")]
+        [Route("[controller]/getelementcounts")]
         public ActionResult GetElementCounts()
         {
             Dictionary<string, int> result;

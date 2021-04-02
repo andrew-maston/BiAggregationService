@@ -45,8 +45,8 @@ namespace AggregationService
             services.AddControllers();
             services.AddSingleton(IfcStore.Open(_localFilePath, _xbimEditorCredentials));
 
-            services.AddSingleton<IIfcStoreRepository<IIfcElement>>(svc => new IfcStoreRepository<IIfcElement>(svc.GetRequiredService<IfcStore>(), svc.GetRequiredService<ILogger>()));
-            services.AddSingleton<IIfcStoreRepository<IIfcSpace>>(svc => new IfcStoreRepository<IIfcSpace>(svc.GetRequiredService<IfcStore>(), svc.GetRequiredService<ILogger>()));
+            services.AddSingleton<IIfcStoreRepository<IIfcElement>>(svc => new IfcStoreRepository<IIfcElement>(svc.GetRequiredService<IfcStore>()));//, svc.GetRequiredService<ILogger>()));
+            services.AddSingleton<IIfcStoreRepository<IIfcSpace>>(svc => new IfcStoreRepository<IIfcSpace>(svc.GetRequiredService<IfcStore>()));//, svc.GetRequiredService<ILogger>()));
 
             services.AddSingleton<ISummaryService>(svc => new SummaryService(svc.GetRequiredService<IIfcStoreRepository<IIfcElement>>()));
             services.AddSingleton<IRoomService>(svc => new RoomService(svc.GetRequiredService<IIfcStoreRepository<IIfcSpace>>()));
